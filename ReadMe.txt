@@ -1,1 +1,1 @@
-Working collection of Abstract Data Types as they are introduced and studied in CSCE 221 at Texas A&M University.
+Working collection of Abstract Data Types as they are introduced and studied in CSCE 221 at Texas A&M University. Does not include homework assignments and is not a copy of what is provided in class materials, these implementations are my own.
