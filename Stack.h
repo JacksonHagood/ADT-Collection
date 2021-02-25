@@ -135,5 +135,5 @@ class Stack {
             os << "]";
 
             return os;
-    }
+        }
 };

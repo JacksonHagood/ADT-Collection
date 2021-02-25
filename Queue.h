@@ -138,5 +138,5 @@ class Queue {
             os << "]";
 
             return os;
-    }
+        }
 };

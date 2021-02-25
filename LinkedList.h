@@ -88,48 +88,6 @@ class LinkedList {
             clear();
         }
 
-        // removes an element from the linked list (O(n))
-        void remove(int index) {
-            // check the index
-            if (index >= size) {
-                throw std::invalid_argument("Out of range");
-            }
-
-            NodeType* currentNode = head;
-            NodeType* previousNode = head;
-            int i = 0;
-
-            // locate the node to remove
-            while (i != index) {
-                previousNode = currentNode;
-                currentNode = currentNode->nextNode;
-                i++;
-            }
-
-            // reassign surrounding nodes accordingly
-            if (i == 0) {
-                head = currentNode->nextNode;
-            }
-
-            if (i == size - 1) {
-                tail = previousNode;
-                previousNode->nextNode = nullptr;
-            } else {
-                previousNode->nextNode = currentNode->nextNode;
-            }
-
-            // remove the node
-            delete currentNode;
-            size--;
-        }
-
-        // clears the linked list (O(n))
-        void clear() {
-            while (head != nullptr) {
-                pop();
-            }
-        }
-
         // pushes a node with value to the front of the linked list (O(1))
         void pushFront(type value) {
             NodeType* newNode = new Node(value);
@@ -164,7 +122,7 @@ class LinkedList {
             size++;
         }
 
-        // inserts a node with value at an inex inthe linked list (O(n))
+        // inserts a node with value at an index in the linked list (O(n))
         void insert(type value, int index) {
             if (index > size) {
                 throw std::invalid_argument("Out of range");
@@ -206,6 +164,50 @@ class LinkedList {
             }
 
             remove(size - 1);
+        }
+
+        // removes an element from the linked list (O(n))
+        void remove(int index) {
+            // check the index
+            if (index >= size) {
+                throw std::invalid_argument("Out of range");
+            }
+
+            NodeType* currentNode = head;
+            NodeType* previousNode = head;
+            int i = 0;
+
+            // locate the node to remove
+            while (i != index) {
+                previousNode = currentNode;
+                currentNode = currentNode->nextNode;
+                i++;
+            }
+
+            if (i == 0) {
+                // case 1, remove the first node
+                head = currentNode->nextNode;
+            }
+
+            if (i == size - 1) {
+                // case 2, remove the last node
+                tail = previousNode;
+                previousNode->nextNode = nullptr;
+            } else {
+                // case 3, remove a node somewhere in the middle of the list
+                previousNode->nextNode = currentNode->nextNode;
+            }
+
+            // remove the node
+            delete currentNode;
+            size--;
+        }
+
+        // clears the linked list (O(n))
+        void clear() {
+            while (head != nullptr) {
+                pop();
+            }
         }
 
         // returns the first element of the linked list (O(1))
@@ -275,5 +277,5 @@ class LinkedList {
             os << "]";
 
             return os;
-    }
+        }
 };
